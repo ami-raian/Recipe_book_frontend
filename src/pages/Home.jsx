@@ -8,6 +8,9 @@ import toast from "react-hot-toast";
 const Home = () => {
   const [featuredRecipes, setFeaturedRecipes] = useState([]);
 
+  console.log(import.meta.env.VITE_API_URL, "API URL");
+  console.log(`${import.meta.env.VITE_API_URL}/recipes`, "API URL");
+
   useEffect(() => {
     const fetchRecipes = async () => {
       try {
