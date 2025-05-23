@@ -37,7 +37,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "recipe/:id",
+        path: "recipe/:_id",
         element: (
           <PrivateRoute>
             <RecipeDetails />

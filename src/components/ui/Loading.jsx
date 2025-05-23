@@ -6,7 +6,7 @@ const Loading = () => {
         <p className="mt-4 text-gray-700 dark:text-gray-300">Loading...</p>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Loading
+export default Loading;

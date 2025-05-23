@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import RecipeForm from "../components/recipe/RecipeForm";
 import { useAuth } from "../contexts/AuthContext";
 import toast from "react-hot-toast";
-import dummyRecipes from "../data/dummyRecipes";
 
 const AddRecipe = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -16,18 +15,10 @@ const AddRecipe = () => {
       return;
     }
 
-    console.log(formData);
-
     try {
       setIsSubmitting(true);
 
-      // In a real app, this would be an API call to save the recipe
-      // For now, we'll just simulate a delay and show a success message
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-
-      // Create a new recipe object
       const newRecipe = {
-        id: dummyRecipes.length + 1,
         ...formData,
         likeCount: 0,
         userId: user.uid,
@@ -37,9 +28,13 @@ const AddRecipe = () => {
         },
       };
 
-      // In a real app, we would add this to the database
-      // For this demo, we'll just log it
-      console.log("New recipe created:", newRecipe);
+      const response = await fetch("http://localhost:5000/recipes", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newRecipe),
+      });
+
+      if (!response.ok) throw new Error("Failed to submit");
 
       toast.success("Recipe added successfully!");
       navigate("/my-recipes");

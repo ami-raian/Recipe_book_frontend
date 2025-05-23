@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom'
-import RecipeList from '../recipe/RecipeList'
+import { Link } from "react-router-dom";
+import RecipeList from "../recipe/RecipeList";
 
 const FeaturedRecipes = ({ recipes, onLike }) => {
   return (
@@ -18,15 +18,15 @@ const FeaturedRecipes = ({ recipes, onLike }) => {
             See All Recipes
           </Link>
         </div>
-        
-        <RecipeList 
-          recipes={recipes} 
+
+        <RecipeList
+          recipes={recipes}
           onLike={onLike}
           emptyMessage="No featured recipes yet. Be the first to add one!"
         />
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default FeaturedRecipes
+export default FeaturedRecipes;
