@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { useAuth } from "../contexts/AuthContext";
-import dummyRecipes from "../data/dummyRecipes";
 import RecipeForm from "../components/recipe/RecipeForm";
 import toast from "react-hot-toast";
 import { FiEdit2, FiTrash2 } from "react-icons/fi";
