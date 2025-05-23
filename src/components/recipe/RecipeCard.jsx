@@ -31,7 +31,7 @@ const RecipeCard = ({ recipe, onLike }) => {
     }
   };
 
-  console.log(recipe, "All recipe data");
+  // console.log(recipe, "All recipe data");
 
   return (
     <div className="card card-hover bg-white dark:bg-gray-800 shadow-md overflow-hidden">

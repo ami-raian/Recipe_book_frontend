@@ -12,15 +12,30 @@ const MyRecipes = () => {
   const [currentRecipe, setCurrentRecipe] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  console.log(user, "User data");
+  console.log(myRecipes, "My recipes data");
+
   useEffect(() => {
     if (!user) return;
 
-    // In a real app, this would be an API call to get the user's recipes
-    // For now, we'll filter the dummy recipes by the current user's ID
-    const userRecipes = dummyRecipes.filter(
-      (recipe) => recipe.userId === user.uid
-    );
-    setMyRecipes(userRecipes);
+    const fetchRecipes = async () => {
+      try {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/recipes`);
+        if (!response.ok) {
+          throw new Error("Failed to fetch recipes");
+        }
+
+        const data = await response.json();
+
+        const userRecipes = data.filter((recipe) => recipe.userId === user.uid);
+        setMyRecipes(userRecipes);
+      } catch (error) {
+        console.error(error);
+        toast.error("Could not load recipes");
+      }
+    };
+
+    fetchRecipes();
   }, [user]);
 
   const handleUpdate = async (formData) => {
@@ -34,7 +49,7 @@ const MyRecipes = () => {
       await new Promise((resolve) => setTimeout(resolve, 1000));
 
       const updatedRecipes = myRecipes.map((recipe) =>
-        recipe.id === currentRecipe.id ? { ...recipe, ...formData } : recipe
+        recipe._id === currentRecipe._id ? { ...recipe, ...formData } : recipe
       );
 
       setMyRecipes(updatedRecipes);
@@ -90,7 +105,7 @@ const MyRecipes = () => {
           <div className="grid grid-cols-1 gap-6">
             {myRecipes.map((recipe) => (
               <div
-                key={recipe.id}
+                key={recipe._id}
                 className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden"
               >
                 <div className="flex flex-col md:flex-row">
