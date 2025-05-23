@@ -28,14 +28,11 @@ const AddRecipe = () => {
         },
       };
 
-      const response = await fetch(
-        `https://recipe-book-back-end-alpha.vercel.app/recipes`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(newRecipe),
-        }
-      );
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/recipes`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newRecipe),
+      });
 
       if (!response.ok) throw new Error("Failed to submit");
 

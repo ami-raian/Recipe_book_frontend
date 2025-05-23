@@ -16,7 +16,7 @@ const RecipeDetails = () => {
     const fetchRecipe = async () => {
       try {
         const response = await fetch(
-          `https://recipe-book-back-end-alpha.vercel.app/recipes/${_id}`
+          `${import.meta.env.VITE_API_URL}/recipes/${_id}`
         );
         if (!response.ok) throw new Error("Failed to fetch recipe");
         const data = await response.json();

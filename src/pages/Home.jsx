@@ -11,9 +11,7 @@ const Home = () => {
   useEffect(() => {
     const fetchRecipes = async () => {
       try {
-        const response = await fetch(
-          `https://recipe-book-back-end-alpha.vercel.app/recipes`
-        );
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/recipes`);
         if (!response.ok) {
           throw new Error("Failed to fetch recipes");
         }
