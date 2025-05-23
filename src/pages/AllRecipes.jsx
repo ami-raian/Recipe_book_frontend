@@ -31,7 +31,9 @@ const AllRecipes = () => {
   useEffect(() => {
     const fetchRecipes = async () => {
       try {
-        const response = await fetch("http://localhost:5000/recipes");
+        const response = await fetch(
+          `https://recipe-book-back-end-alpha.vercel.app/recipes`
+        );
         const data = await response.json();
         setRecipes(data);
 
